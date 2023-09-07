@@ -1,5 +1,6 @@
 package proyectotransversal.Entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Alumno {
@@ -8,13 +9,13 @@ public class Alumno {
     private int dni;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private boolean activo;
 
     public Alumno() {
     }
 
-    public Alumno(int idAlumno, int dni, String nombre, String apellido, Date fechaNacimiento, boolean activo) {
+    public Alumno(int idAlumno, int dni, String nombre, String apellido, LocalDate fechaNacimiento, boolean activo) {
         this.idAlumno = idAlumno;
         this.dni = dni;
         this.nombre = nombre;
@@ -23,7 +24,7 @@ public class Alumno {
         this.activo = activo;
     }
 
-    public Alumno(int dni, String nombre, String apellido, Date fechaNacimiento, boolean activo) {
+    public Alumno(int dni, String nombre, String apellido, LocalDate fechaNacimiento, boolean activo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -63,11 +64,11 @@ public class Alumno {
         this.apellido = apellido;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
