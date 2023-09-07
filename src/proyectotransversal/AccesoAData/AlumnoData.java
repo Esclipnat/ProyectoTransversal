@@ -99,7 +99,7 @@ public class AlumnoData {
     }
 
     public List<Alumno> listarAlumnos() {
-        List<Alumno> alumnos = new ArrayList<>();
+        List<Alumno> ListaAlumno = new ArrayList<>();
         try {
             String sql = "SELECT * FROM alumno WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -112,14 +112,14 @@ public class AlumnoData {
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setActivo(rs.getBoolean("estado"));
-                alumnos.add(alumno);
+                ListaAlumno.add(alumno);
             }
             ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno " + ex.getMessage());
         }
-        return alumnos;
+        return ListaAlumno;
     }
 
     public void modificarAlumno(Alumno alumno) {
