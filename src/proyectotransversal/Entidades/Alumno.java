@@ -1,30 +1,50 @@
-
-
 package proyectotransversal.Entidades;
 
 import java.util.Date;
 
 public class Alumno {
+
     private int idAlumno;
+    private int dni;
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
     private boolean activo;
 
-    public Alumno(int id, String nombre, String apellido, Date fechaNacimiento, boolean activo) {
-        this.idAlumno = id;
+    public Alumno() {
+    }
+
+    public Alumno(int idAlumno, int dni, String nombre, String apellido, Date fechaNacimiento, boolean activo) {
+        this.idAlumno = idAlumno;
+        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.activo = activo;
     }
 
-    public int getId() {
+    public Alumno(int dni, String nombre, String apellido, Date fechaNacimiento, boolean activo) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.activo = activo;
+    }
+
+    public int getIdAlumno() {
         return idAlumno;
     }
 
-    public void setId(int id) {
-        this.idAlumno = id;
+    public void setIdAlumno(int idAlumno) {
+        this.idAlumno = idAlumno;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -61,12 +81,12 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" +
-                "id=" + idAlumno +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", activo=" + activo +
-                '}';
+        return "Alumno{"
+                + "id=" + idAlumno
+                + ", nombre='" + nombre + '\''
+                + ", apellido='" + apellido + '\''
+                + ", fechaNacimiento=" + fechaNacimiento
+                + ", activo=" + activo
+                + '}';
     }
 }
