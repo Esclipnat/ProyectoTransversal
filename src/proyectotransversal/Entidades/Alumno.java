@@ -59,6 +59,7 @@ public class Alumno {
         this.activo = activo;
     }
 
+    @Override
     public String toString() {
         return "Alumno{" +
                 "id=" + idAlumno +
