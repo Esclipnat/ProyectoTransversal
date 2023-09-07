@@ -5,14 +5,14 @@ package proyectotransversal.Entidades;
 import java.util.Date;
 
 public class Alumno {
-    private int id;
+    private int idAlumno;
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
     private boolean activo;
 
     public Alumno(int id, String nombre, String apellido, Date fechaNacimiento, boolean activo) {
-        this.id = id;
+        this.idAlumno = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
@@ -20,11 +20,11 @@ public class Alumno {
     }
 
     public int getId() {
-        return id;
+        return idAlumno;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idAlumno = id;
     }
 
     public String getNombre() {
@@ -61,7 +61,7 @@ public class Alumno {
 
     public String toString() {
         return "Alumno{" +
-                "id=" + id +
+                "id=" + idAlumno +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
