@@ -4,10 +4,10 @@ package proyectotransversal.Entidades;
 
 public class Materia {
     
-    private int idMateria;
-    private String nombre;
-    private int anioMateria;
-    private boolean activo;
+    int idMateria;
+    String nombre;
+    int anioMateria;
+    boolean activo;
 
     public Materia() {
     }
@@ -19,7 +19,7 @@ public class Materia {
         this.activo = activo;
     }
     
-    public Materia(String nombre, int edad){
+    public Materia(String nombre, int anioMateria, boolean activo){
         this.nombre = nombre;
         this.anioMateria = anioMateria;
         this.activo = activo;
@@ -56,7 +56,7 @@ public class Materia {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
+   
     @Override
     public String toString(){
         return "Materia " + idMateria + " nombre " + nombre + " año materia " + anioMateria + " activo " + activo;
