@@ -56,6 +56,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu1.setText("Alumno");
 
+        jMenuFormAlum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/GestionAlumno.png"))); // NOI18N
         jMenuFormAlum.setText("Formulario de Alumno");
         jMenuFormAlum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +69,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Materia");
 
+        jMenuFormMate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/GestionMateria.png"))); // NOI18N
         jMenuFormMate.setText("Formulario de Materia");
         jMenuFormMate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +82,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu3.setText("Administracion");
 
+        jMenuManejoInscrip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ManejoInscripcion.png"))); // NOI18N
         jMenuManejoInscrip.setText("Manejo de Inscripciones");
         jMenuManejoInscrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +91,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuManejoInscrip);
 
+        jMenuManipuNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ManejoNotas.png"))); // NOI18N
         jMenuManipuNota.setText("Manipulacion de Notas");
         jMenuManipuNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +104,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu4.setText("Consultas");
 
+        AlumxMate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ConsularNota.png"))); // NOI18N
         AlumxMate.setText("Alumnos por Materia");
         AlumxMate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
