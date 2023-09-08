@@ -56,6 +56,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu1.setText("Alumno");
 
+        jMenuFormAlum.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jMenuFormAlum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/GestionAlumno.png"))); // NOI18N
         jMenuFormAlum.setText("Formulario de Alumno");
         jMenuFormAlum.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +70,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Materia");
 
+        jMenuFormMate.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jMenuFormMate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/GestionMateria.png"))); // NOI18N
         jMenuFormMate.setText("Formulario de Materia");
         jMenuFormMate.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +84,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu3.setText("Administracion");
 
+        jMenuManejoInscrip.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jMenuManejoInscrip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ManejoInscripcion.png"))); // NOI18N
         jMenuManejoInscrip.setText("Manejo de Inscripciones");
         jMenuManejoInscrip.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +94,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuManejoInscrip);
 
+        jMenuManipuNota.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jMenuManipuNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ManejoNotas.png"))); // NOI18N
         jMenuManipuNota.setText("Manipulacion de Notas");
         jMenuManipuNota.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +108,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu4.setText("Consultas");
 
+        AlumxMate.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         AlumxMate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ConsularNota.png"))); // NOI18N
         AlumxMate.setText("Alumnos por Materia");
         AlumxMate.addActionListener(new java.awt.event.ActionListener() {
