@@ -98,7 +98,12 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         jButtonAlta.setText("Darse de Alta");
 
         jButtonSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonSalir.setText("Salir");
+        jButtonSalir.setText("Atras");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,6 +186,11 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
