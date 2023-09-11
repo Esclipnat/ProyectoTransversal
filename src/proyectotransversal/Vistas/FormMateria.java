@@ -63,6 +63,12 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
         jButtonBuscar.setText("Buscar");
 
+        jTextNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextNombreActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Nombre");
 
         jLabel5.setText("Año");
@@ -70,6 +76,11 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTextPane1);
 
         jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         jButtonEliminar.setText("Eliminar");
 
@@ -162,11 +173,23 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextNombreActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
