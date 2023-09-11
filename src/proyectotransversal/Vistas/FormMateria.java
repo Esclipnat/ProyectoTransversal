@@ -75,7 +75,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        jButtonSalir.setText("Salir");
+        jButtonSalir.setText("Atras");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
@@ -188,7 +188,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+       this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
 
