@@ -5,20 +5,27 @@
 package proyectotransversal.Vistas;
 
 import javax.swing.table.DefaultTableModel;
+import proyectotransversal.AccesoAData.AlumnoData;
+import proyectotransversal.AccesoAData.InscripcionData;
+import proyectotransversal.Entidades.Alumno;
+import proyectotransversal.Entidades.Materia;
 
 /**
  *
  * @author crist
  */
 public class ManejoInscripcion extends javax.swing.JInternalFrame {
-        private DefaultTableModel modelo = new DefaultTableModel();
+        private DefaultTableModel modeloInscriptos = new DefaultTableModel();
+        private DefaultTableModel modeloNoInscriptos = new DefaultTableModel();
 
     /**
      * Creates new form ManejoInscripcion
      */
     public ManejoInscripcion() {
         initComponents();
+        cargarcombobox();
         crearTabla();
+        cargarTabla();
     }
 
     /**
@@ -34,7 +41,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbAlumnos = new javax.swing.JComboBox<>();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableNoInscripto = new javax.swing.JTable();
@@ -54,8 +61,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Seleccionar Alumno:");
 
-        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbAlumnos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         jTableNoInscripto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,7 +129,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                         .addGap(197, 197, 197)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                         .addGap(75, 75, 75)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(154, 154, 154))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -162,7 +168,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -197,7 +203,6 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JButton jButtonBaja;
     private javax.swing.JButton jButtonSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -210,21 +215,50 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTableInscripto;
     private javax.swing.JTable jTableNoInscripto;
+    private javax.swing.JComboBox<Alumno> jcbAlumnos;
     // End of variables declaration//GEN-END:variables
 private void crearTabla() {
-        modelo.addColumn("ID");
-        modelo.addColumn("Año de cursada");
-        modelo.addColumn("Nombre de la Materia");
-        jTableInscripto.setModel(modelo);
+        modeloInscriptos.addColumn("ID");
+        modeloInscriptos.addColumn("Año de cursada");
+        modeloInscriptos.addColumn("Nombre de la Materia");
+        modeloNoInscriptos.addColumn("ID");
+        modeloNoInscriptos.addColumn("Año de cursada");
+        modeloNoInscriptos.addColumn("Nombre de la Materia");
+        jTableInscripto.setModel(modeloInscriptos);
         jTableInscripto.setEnabled(false);
-        jTableNoInscripto.setModel(modelo);
+        jTableNoInscripto.setModel(modeloNoInscriptos);
         jTableNoInscripto.setEnabled(false);
     }
 
-    /*private void cargarTabla() {
-        for (Producto dato : Menu.listaProducto) {
-            modelo.addRow(new Object[]{dato.getCodigo(), dato.getDescripcion(), dato.getPrecio(), dato.getStock()});
+    private void cargarTabla() {
+        InscripcionData inscripcionData = new InscripcionData();
+        Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+        int id = aux.getIdAlumno();
+
+        if (inscripcionData.obtenerMateriasCursadas(id) != null) {
+            for (Materia materia : inscripcionData.obtenerMateriasCursadas(id)) {
+                modeloInscriptos.addRow(new Object[]{materia.getIdMateria(), materia.getAnioMateria(), materia.getNombre()});
+            }
+        } else {
+            System.out.println("No hay datos en el array");
         }
-    }*/
-    
+        
+        if (inscripcionData.obtenerMateriasNOCursadas(id) != null) {
+            for (Materia materia : inscripcionData.obtenerMateriasNOCursadas(id)) {
+                modeloNoInscriptos.addRow(new Object[]{materia.getIdMateria(), materia.getAnioMateria(), materia.getNombre()});
+            }
+        } else {
+            System.out.println("No hay datos en el array");
+        }
+
+    }
+
+    private void cargarcombobox() {
+        AlumnoData alumnoData = new AlumnoData();
+        for (Alumno alumno : alumnoData.listarAlumnos()) {
+            jcbAlumnos.addItem(alumno);
+        }
+
+    }
 }
+

@@ -137,26 +137,27 @@ public class InscripcionData {
     }
 
     public List<Materia> obtenerMateriasNOCursadas(int id) {
-        List<Materia> ListaMaterias = new ArrayList<Materia>();
-        String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripción JOIN materia ON(inscripción.idMateria != materia.idMateria) WHERE inscripcion.idAlumno = ?";
-        PreparedStatement ps;
-        try {
-            ps = con.prepareStatement(sql);
+        List<Materia> listaMaterias = new ArrayList<Materia>();
+
+        // Copiar la lista original
+        listaMaterias.addAll(materiaData.listarmaterias());
+
+        String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion JOIN materia ON (inscripcion.idMateria = materia.idMateria) WHERE inscripcion.idAlumno = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            Materia materia;
+
             while (rs.next()) {
-                materia = new Materia();                                        //por que no directamente---> Materia materia = new Materia();    
-                materia.setIdMateria(rs.getInt("IdMateria"));
-                materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("año"));
-                ListaMaterias.add(materia);
+                int idMateria = rs.getInt("idMateria");
+
+                // Usar una lambda expression para eliminar la materia de la lista
+                listaMaterias.removeIf(materia -> materia.getIdMateria() == idMateria);
             }
-            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ListaMaterias;
+
+        return listaMaterias;
     }
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
