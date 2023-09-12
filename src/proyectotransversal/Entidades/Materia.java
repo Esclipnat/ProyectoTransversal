@@ -4,31 +4,13 @@ package proyectotransversal.Entidades;
 
 public class Materia {
 
-    public static boolean eliminarMateria(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
-    public static Materia buscarMateria(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    /**
-     *
-     * @param materia
-     */
-    public static void guardarMateria(Materia materia) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
- 
-    
     private int idMateria;
     private String nombre;
     private int añoMateria;
     private boolean activo;
 
-    public Materia(String codigo, String nombre1, int año, java.lang.Boolean estado) {
+    public Materia() {
     }
     
     public Materia(int idMateria, String nombre, int anioMateria, boolean activo) {
@@ -80,10 +62,4 @@ public class Materia {
     public String toString(){
         return "Materia " + idMateria + " nombre " + nombre + " año materia " + añoMateria + " activo " + activo;
     }
-
-    public Object getaño() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
 }

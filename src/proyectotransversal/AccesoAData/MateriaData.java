@@ -2,7 +2,6 @@ package proyectotransversal.AccesoAData;
 
 import proyectotransversal.Entidades.Materia;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,7 +60,7 @@ public class MateriaData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                materia = new Materia(codigo, nombre, año, estado);
+                materia = new Materia();
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAñoMateria(rs.getInt("año"));
@@ -85,7 +84,7 @@ public class MateriaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Materia materia = new Materia(codigo, nombre, año, estado);
+                Materia materia = new Materia();
                 materia.setIdMateria(rs.getInt("IdMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAñoMateria(rs.getInt("año"));

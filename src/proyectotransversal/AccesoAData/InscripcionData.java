@@ -123,10 +123,10 @@ public class InscripcionData {
             ResultSet rs = ps.executeQuery();
             Materia materia;
             while (rs.next()) {
-                materia = new Materia();                                        //por que no directamente---> Materia materia = new Materia();    
+                materia = new Materia();
                 materia.setIdMateria(rs.getInt("IdMateria"));
                 materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("año"));
+                materia.setAñoMateria(rs.getInt("año"));
                 ListaMaterias.add(materia);
             }
             ps.close();

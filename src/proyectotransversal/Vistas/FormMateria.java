@@ -8,13 +8,13 @@ import javax.swing.JOptionPane;
 import proyectotransversal.AccesoAData.MateriaData;
 import proyectotransversal.Entidades.Materia;
 
-
 /**
  *
  * @author crist
  */
 public class FormMateria extends javax.swing.JInternalFrame {
-
+    
+    MateriaData materiaData = new MateriaData();
     /**
      * Creates new form FormMateria
      */
@@ -203,74 +203,73 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-   String codigo = txtCodigo.getText();
-    String nombre = txtNombre.getText();
-    int año = Integer.parseInt(txtAño.getText());
-    String estado = txtEstado.getText();
-    // Llama al método guardarMateria de tu clase MateriaData
-    Materia materia = new Materia(codigo, nombre, año, estado);
-    boolean guardado = MateriaData.guardarMateria(materia);
-    if (guardado) {
-        JOptionPane.showMessageDialog(this, "Materia guardada.");
-    } else {
-        JOptionPane.showMessageDialog(this, "No se pudo guardar la materia.");
-    }
+        int codigo = Integer.parseInt(txtCodigo.getText());
+        String nombre = txtNombre.getText();
+        int año = Integer.parseInt(txtAño.getText());
+        Boolean estado = jRadioButton1.isSelected();
+        // Llama al método guardarMateria de tu clase MateriaData
+        Materia materia = new Materia(codigo, nombre, año, estado);
+        boolean guardado = MateriaData.guardarMateria(materia);
+        if (guardado) {
+            JOptionPane.showMessageDialog(this, "Materia guardada.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo guardar la materia.");
+        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
-           // Código para limpiar los campos y crear una nueva materia
-    txtCodigo.setText("");
-    txtNombre.setText("");
-    txtAño.setText("");
-    txtEstado.setText("");
-    }//GEN-LAST:event_jButtonNuevoActionPerformed
-
-    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-     // Código para eliminar una materia
-    String codigo = txtCodigo.getText();
-    // Llama al método eliminarMateria de tu clase MateriaData
-    boolean eliminado = MateriaData.eliminarMateria(codigo);
-    if (eliminado) {
-        JOptionPane.showMessageDialog(this, "Materia eliminada.");
-        // Limpia los campos después de eliminar
+        // Código para limpiar los campos y crear una nueva materia
         txtCodigo.setText("");
         txtNombre.setText("");
         txtAño.setText("");
-        txtEstado.setText("");
-    } else {
-        JOptionPane.showMessageDialog(this, "No se pudo eliminar la materia.");
-    }
+        jRadioButton1.setSelected(false);
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // Código para eliminar una materia
+        String codigo = txtCodigo.getText();
+        // Llama al método eliminarMateria de tu clase MateriaData
+        boolean eliminado = MateriaData.eliminarMateria(codigo);
+        if (eliminado) {
+            JOptionPane.showMessageDialog(this, "Materia eliminada.");
+            // Limpia los campos después de eliminar
+            txtCodigo.setText("");
+            txtNombre.setText("");
+            txtAño.setText("");
+            jRadioButton1.setSelected(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo eliminar la materia.");
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-            // Código para buscar una materia
-    String codigo = txtCodigo.getText();
-    // Llama al método buscarMateria de tu clase Materia
-    Materia materia = Materia.buscarMateria(codigo);
-    // Actualiza los campos de texto con los datos de la materia encontrada
-    if (materia != null) {
-        txtNombre.setText(materia.getNombre());
-        txtAño.setText(String.valueOf(materia.getaño()));
-        txtEstado.setText(materia.getEstado());
-    } else {
-        JOptionPane.showMessageDialog(this, "Materia no encontrada.");
-    }
+        // Código para buscar una materia
+        int codigo = Integer.parseInt(txtCodigo.getText());
+        Materia materia = materiaData.buscarmateria(codigo);
+        // Actualiza los campos de texto con los datos de la materia encontrada
+        if (materia != null) {
+            txtNombre.setText(materia.getNombre());
+            txtAño.setText(String.valueOf(txtCodigo.getText()));
+            jRadioButton1.setSelected(materia.isActivo());
+        } else {
+            JOptionPane.showMessageDialog(this, "Materia no encontrada.");
+        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
 

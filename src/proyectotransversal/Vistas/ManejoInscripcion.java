@@ -301,7 +301,7 @@ private void crearTabla() {
 
         if (inscripcionData.obtenerMateriasCursadas(id) != null) {
             for (Materia materia : inscripcionData.obtenerMateriasCursadas(id)) {
-                modeloInscriptos.addRow(new Object[]{materia.getIdMateria(), materia.getAnioMateria(), materia.getNombre()});
+                modeloInscriptos.addRow(new Object[]{materia.getIdMateria(), materia.getAñoMateria(), materia.getNombre()});
             }
         } else {
             System.out.println("No hay datos en el array");
@@ -309,7 +309,7 @@ private void crearTabla() {
 
         if (inscripcionData.obtenerMateriasNOCursadas(id) != null) {
             for (Materia materia : inscripcionData.obtenerMateriasNOCursadas(id)) {
-                modeloNoInscriptos.addRow(new Object[]{materia.getIdMateria(), materia.getAnioMateria(), materia.getNombre()});
+                modeloNoInscriptos.addRow(new Object[]{materia.getIdMateria(), materia.getAñoMateria(), materia.getNombre()});
             }
         } else {
             System.out.println("No hay datos en el array");
