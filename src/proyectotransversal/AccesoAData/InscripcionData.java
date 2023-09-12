@@ -217,7 +217,7 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion " + ex.getMessage());
         }
-    }     //no se si se usa                                                                   //se usa?
+    }     
 
     public void eliminarinscripcion(int id) { // eliminar  de verdad
         try {
@@ -233,6 +233,6 @@ public class InscripcionData {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla inscripcion");
         }
-    }                       //se usa?
+    }                      
 
 }

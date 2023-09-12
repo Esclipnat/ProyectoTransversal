@@ -4,10 +4,13 @@
  */
 package proyectotransversal.Vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectotransversal.AccesoAData.AlumnoData;
 import proyectotransversal.AccesoAData.InscripcionData;
+import proyectotransversal.AccesoAData.MateriaData;
 import proyectotransversal.Entidades.Alumno;
+import proyectotransversal.Entidades.Inscripcion;
 import proyectotransversal.Entidades.Materia;
 
 /**
@@ -15,17 +18,21 @@ import proyectotransversal.Entidades.Materia;
  * @author crist
  */
 public class ManejoInscripcion extends javax.swing.JInternalFrame {
-        private DefaultTableModel modeloInscriptos = new DefaultTableModel();
-        private DefaultTableModel modeloNoInscriptos = new DefaultTableModel();
+
+    private DefaultTableModel modeloInscriptos = new DefaultTableModel();
+    private DefaultTableModel modeloNoInscriptos = new DefaultTableModel();
+    InscripcionData inscripcionData = new InscripcionData();
+    AlumnoData alumnoData = new AlumnoData();
+    MateriaData materiaData = new MateriaData();
 
     /**
      * Creates new form ManejoInscripcion
      */
     public ManejoInscripcion() {
         initComponents();
-        cargarcombobox();
         crearTabla();
-        cargarTabla();
+        cargarcombobox();
+        actualizar();
     }
 
     /**
@@ -62,6 +69,11 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         jLabel2.setText("Seleccionar Alumno:");
 
         jcbAlumnos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jcbAlumnos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbAlumnosItemStateChanged(evt);
+            }
+        });
 
         jTableNoInscripto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,9 +111,19 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
 
         jButtonBaja.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButtonBaja.setText("Darse de Baja");
+        jButtonBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBajaActionPerformed(evt);
+            }
+        });
 
         jButtonAlta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButtonAlta.setText("Darse de Alta");
+        jButtonAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAltaActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButtonSalir.setText("Atras");
@@ -198,6 +220,42 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    private void jcbAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbAlumnosItemStateChanged
+        actualizar();
+    }//GEN-LAST:event_jcbAlumnosItemStateChanged
+
+    private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
+        int filas = jTableInscripto.getSelectedRow();
+        if (filas!=-1){
+            int id = (int) jTableInscripto.getValueAt(filas,1);
+            inscripcionData.eliminarinscripcion(id);
+        }else{  
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }
+        actualizar();
+    }//GEN-LAST:event_jButtonBajaActionPerformed
+
+    private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
+        int filas = jTableInscripto.getSelectedRow();
+        if (filas!=-1){
+            int idMateria = (int) jTableInscripto.getValueAt(filas,1);
+            int anio = (int) jTableInscripto.getValueAt(filas,2);
+            String nombre = (String) jTableInscripto.getValueAt(filas,3);
+            
+            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+            int idAlumno = aux.getIdAlumno();
+            
+            Alumno alumno = alumnoData.buscarAlumno(idAlumno);
+            Materia materia = materiaData.buscarmateria(idMateria);
+            
+            Inscripcion inscripcion = new Inscripcion(0,alumno,materia,0);
+            inscripcionData.guardarinscripcion(inscripcion);
+        }else{  
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }
+        actualizar();
+    }//GEN-LAST:event_jButtonAltaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlta;
@@ -221,13 +279,20 @@ private void crearTabla() {
         modeloInscriptos.addColumn("ID");
         modeloInscriptos.addColumn("Año de cursada");
         modeloInscriptos.addColumn("Nombre de la Materia");
+
         modeloNoInscriptos.addColumn("ID");
         modeloNoInscriptos.addColumn("Año de cursada");
         modeloNoInscriptos.addColumn("Nombre de la Materia");
+
         jTableInscripto.setModel(modeloInscriptos);
-        jTableInscripto.setEnabled(false);
         jTableNoInscripto.setModel(modeloNoInscriptos);
+
+        jTableInscripto.setEnabled(false);
         jTableNoInscripto.setEnabled(false);
+
+        jTableInscripto.setRowSelectionAllowed(true);
+        jTableNoInscripto.setRowSelectionAllowed(true);
+
     }
 
     private void cargarTabla() {
@@ -242,7 +307,7 @@ private void crearTabla() {
         } else {
             System.out.println("No hay datos en el array");
         }
-        
+
         if (inscripcionData.obtenerMateriasNOCursadas(id) != null) {
             for (Materia materia : inscripcionData.obtenerMateriasNOCursadas(id)) {
                 modeloNoInscriptos.addRow(new Object[]{materia.getIdMateria(), materia.getAnioMateria(), materia.getNombre()});
@@ -254,11 +319,24 @@ private void crearTabla() {
     }
 
     private void cargarcombobox() {
-        AlumnoData alumnoData = new AlumnoData();
         for (Alumno alumno : alumnoData.listarAlumnos()) {
             jcbAlumnos.addItem(alumno);
         }
 
     }
-}
 
+    private void borrarfila() {
+        int f = jTableInscripto.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modeloInscriptos.removeRow(f);
+        }
+         int f2 = jTableNoInscripto.getRowCount() - 1;
+        for (; f2 >= 0; f2--) {
+            modeloNoInscriptos.removeRow(f2);
+        }
+    }
+    private void actualizar(){
+        borrarfila();
+        cargarTabla();
+    }
+}
