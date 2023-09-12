@@ -227,8 +227,10 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
         int filas = jTableInscripto.getSelectedRow();
         if (filas!=-1){
-            int id = (int) jTableInscripto.getValueAt(filas,1);
-            inscripcionData.eliminarinscripcion(id);
+            int idMateria = (int) jTableInscripto.getValueAt(filas,0);
+            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+            int idAlumno = aux.getIdAlumno();
+            inscripcionData.borrarInscripcionMateriaAlumno(idAlumno, idMateria);
         }else{  
             JOptionPane.showMessageDialog(this,"Seleccione una fila");
         }
@@ -236,18 +238,15 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonBajaActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
-        int filas = jTableInscripto.getSelectedRow();
+        int filas = jTableNoInscripto.getSelectedRow();
         if (filas!=-1){
-            int idMateria = (int) jTableInscripto.getValueAt(filas,1);
-            int anio = (int) jTableInscripto.getValueAt(filas,2);
-            String nombre = (String) jTableInscripto.getValueAt(filas,3);
-            
+            int idMateria = (int) jTableNoInscripto.getValueAt(filas,0);
             Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
             int idAlumno = aux.getIdAlumno();
             
             Alumno alumno = alumnoData.buscarAlumno(idAlumno);
             Materia materia = materiaData.buscarmateria(idMateria);
-            
+
             Inscripcion inscripcion = new Inscripcion(0,alumno,materia,0);
             inscripcionData.guardarinscripcion(inscripcion);
         }else{  
