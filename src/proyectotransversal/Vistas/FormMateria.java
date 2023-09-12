@@ -5,7 +5,9 @@
 package proyectotransversal.Vistas;
 
 import javax.swing.JOptionPane;
+import proyectotransversal.AccesoAData.MateriaData;
 import proyectotransversal.Entidades.Materia;
+
 
 /**
  *
@@ -205,16 +207,18 @@ public class FormMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // TODO add your handling code here:
-            // Código para guardar una materia
-    String codigo = txtCodigo.getText();
+   String codigo = txtCodigo.getText();
     String nombre = txtNombre.getText();
     int año = Integer.parseInt(txtAño.getText());
     String estado = txtEstado.getText();
-    // Llama al método guardarMateria de tu clase Materia
+    // Llama al método guardarMateria de tu clase MateriaData
     Materia materia = new Materia(codigo, nombre, año, estado);
-    Materia.guardarMateria(materia);
-    JOptionPane.showMessageDialog(this, "Materia guardada.");
+    boolean guardado = MateriaData.guardarMateria(materia);
+    if (guardado) {
+        JOptionPane.showMessageDialog(this, "Materia guardada.");
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo guardar la materia.");
+    }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -237,11 +241,10 @@ public class FormMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        // TODO add your handling code here:
-          // Código para eliminar una materia
+     // Código para eliminar una materia
     String codigo = txtCodigo.getText();
-    // Llama al método eliminarMateria de tu clase Materia
-    boolean eliminado = Materia.eliminarMateria(codigo);
+    // Llama al método eliminarMateria de tu clase MateriaData
+    boolean eliminado = MateriaData.eliminarMateria(codigo);
     if (eliminado) {
         JOptionPane.showMessageDialog(this, "Materia eliminada.");
         // Limpia los campos después de eliminar
