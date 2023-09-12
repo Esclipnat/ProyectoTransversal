@@ -49,7 +49,7 @@ public class MateriaData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                materia = new Materia();
+                materia = new Materia(codigo, nombre, año, estado);
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("año"));
@@ -73,7 +73,7 @@ public class MateriaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Materia materia = new Materia();
+                Materia materia = new Materia(codigo, nombre, año, estado);
                 materia.setIdMateria(rs.getInt("IdMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("año"));
