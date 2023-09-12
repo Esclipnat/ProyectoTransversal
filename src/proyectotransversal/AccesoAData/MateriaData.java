@@ -13,6 +13,18 @@ import javax.swing.JOptionPane;
 
 public class MateriaData {
 
+    public static boolean eliminarMateria(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static Materia buscarMateria(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static boolean guardarMateria(Materia materia) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private Connection con = null;
 
     public MateriaData() {
@@ -25,7 +37,7 @@ public class MateriaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre());
-            ps.setInt(2, materia.getAnioMateria());
+            ps.setInt(2, materia.getAñoMateria());
             ps.setBoolean(3, materia.isActivo()); // if reducido
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -52,7 +64,7 @@ public class MateriaData {
                 materia = new Materia(codigo, nombre, año, estado);
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("año"));
+                materia.setAñoMateria(rs.getInt("año"));
                 materia.setActivo(rs.getBoolean("estado"));
 
             } else {
@@ -76,7 +88,7 @@ public class MateriaData {
                 Materia materia = new Materia(codigo, nombre, año, estado);
                 materia.setIdMateria(rs.getInt("IdMateria"));
                 materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("año"));
+                materia.setAñoMateria(rs.getInt("año"));
                 materia.setActivo(rs.getBoolean("estado"));
                 ListaMaterias.add(materia);
             }
@@ -95,7 +107,7 @@ public class MateriaData {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, materia.getNombre());
-            ps.setInt(2, materia.getAnioMateria());
+            ps.setInt(2, materia.getAñoMateria());
             ps.setInt(3, materia.getIdMateria());
             int exito = ps.executeUpdate();
 
