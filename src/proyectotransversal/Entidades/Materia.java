@@ -3,25 +3,44 @@ package proyectotransversal.Entidades;
 
 
 public class Materia {
+
+    public static boolean eliminarMateria(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static Materia buscarMateria(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    /**
+     *
+     * @param materia
+     */
+    public static void guardarMateria(Materia materia) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
+ 
     
     private int idMateria;
     private String nombre;
-    private int anioMateria;
+    private int añoMateria;
     private boolean activo;
 
-    public Materia() {
+    public Materia(String codigo, String nombre1, int año, java.lang.Boolean estado) {
     }
     
     public Materia(int idMateria, String nombre, int anioMateria, boolean activo) {
         this.idMateria = idMateria;
         this.nombre = nombre;
-        this.anioMateria = anioMateria;
+        this.añoMateria = anioMateria;
         this.activo = activo;
     }
     
     public Materia(String nombre, int anioMateria, boolean activo){
         this.nombre = nombre;
-        this.anioMateria = anioMateria;
+        this.añoMateria = anioMateria;
         this.activo = activo;
     }
 
@@ -41,12 +60,12 @@ public class Materia {
         this.nombre = nombre;
     }
 
-    public int getAnioMateria() {
-        return anioMateria;
+    public int getAñoMateria() {
+        return añoMateria;
     }
 
-    public void setAnioMateria(int anioMateria) {
-        this.anioMateria = anioMateria;
+    public void setAñoMateria(int anioMateria) {
+        this.añoMateria = añoMateria;
     }
 
     public boolean isActivo() {
@@ -59,7 +78,11 @@ public class Materia {
    
     @Override
     public String toString(){
-        return "Materia " + idMateria + " nombre " + nombre + " año materia " + anioMateria + " activo " + activo;
+        return "Materia " + idMateria + " nombre " + nombre + " año materia " + añoMateria + " activo " + activo;
+    }
+
+    public Object getaño() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

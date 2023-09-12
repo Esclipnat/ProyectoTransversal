@@ -4,6 +4,9 @@
  */
 package proyectotransversal.Vistas;
 
+import javax.swing.JOptionPane;
+import proyectotransversal.Entidades.Materia;
+
 /**
  *
  * @author crist
@@ -28,15 +31,15 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jButtonGuardar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
-        jTextNombre = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        txtAño = new javax.swing.JTextPane();
         jButtonSalir = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
         jButtonNuevo = new javax.swing.JButton();
@@ -48,9 +51,9 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Codigo");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
@@ -62,10 +65,15 @@ public class FormMateria extends javax.swing.JInternalFrame {
         });
 
         jButtonBuscar.setText("Buscar");
-
-        jTextNombre.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNombreActionPerformed(evt);
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
             }
         });
 
@@ -73,7 +81,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Año");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(txtAño);
+        txtAño.getAccessibleContext().setAccessibleName("txtAño");
 
         jButtonSalir.setText("Atras");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +92,11 @@ public class FormMateria extends javax.swing.JInternalFrame {
         });
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jButtonNuevo.setText("Nuevo");
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +136,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                            .addComponent(txtCodigo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonBuscar)
                         .addContainerGap())
@@ -153,11 +167,11 @@ public class FormMateria extends javax.swing.JInternalFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscar))
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -178,23 +192,35 @@ public class FormMateria extends javax.swing.JInternalFrame {
                 .addContainerGap(97, Short.MAX_VALUE))
         );
 
+        txtCodigo.getAccessibleContext().setAccessibleName("");
+        txtNombre.getAccessibleContext().setAccessibleName("");
+        jRadioButton1.getAccessibleContext().setAccessibleName("txtEstado");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
-        
+            // Código para guardar una materia
+    String codigo = txtCodigo.getText();
+    String nombre = txtNombre.getText();
+    int año = Integer.parseInt(txtAño.getText());
+    String estado = txtEstado.getText();
+    // Llama al método guardarMateria de tu clase Materia
+    Materia materia = new Materia(codigo, nombre, año, estado);
+    Materia.guardarMateria(materia);
+    JOptionPane.showMessageDialog(this, "Materia guardada.");
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
-    private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jTextNombreActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
@@ -203,7 +229,46 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
+           // Código para limpiar los campos y crear una nueva materia
+    txtCodigo.setText("");
+    txtNombre.setText("");
+    txtAño.setText("");
+    txtEstado.setText("");
     }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // TODO add your handling code here:
+          // Código para eliminar una materia
+    String codigo = txtCodigo.getText();
+    // Llama al método eliminarMateria de tu clase Materia
+    boolean eliminado = Materia.eliminarMateria(codigo);
+    if (eliminado) {
+        JOptionPane.showMessageDialog(this, "Materia eliminada.");
+        // Limpia los campos después de eliminar
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtAño.setText("");
+        txtEstado.setText("");
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo eliminar la materia.");
+    }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+            // Código para buscar una materia
+    String codigo = txtCodigo.getText();
+    // Llama al método buscarMateria de tu clase Materia
+    Materia materia = Materia.buscarMateria(codigo);
+    // Actualiza los campos de texto con los datos de la materia encontrada
+    if (materia != null) {
+        txtNombre.setText(materia.getNombre());
+        txtAño.setText(String.valueOf(materia.getaño()));
+        txtEstado.setText(materia.getEstado());
+    } else {
+        JOptionPane.showMessageDialog(this, "Materia no encontrada.");
+    }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,8 +286,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextNombre;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane txtAño;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
