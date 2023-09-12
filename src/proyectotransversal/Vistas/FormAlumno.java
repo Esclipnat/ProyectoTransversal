@@ -4,17 +4,25 @@
  */
 package proyectotransversal.Vistas;
 
+import java.sql.Connection;
+import java.time.ZoneId;
+import proyectotransversal.AccesoAData.AlumnoData;
+import proyectotransversal.Entidades.Alumno;
+
 /**
  *
  * @author crist
  */
 public class FormAlumno extends javax.swing.JInternalFrame {
+private AlumnoData adata=new AlumnoData();
 
     /**
      * Creates new form FormAlumno
      */
     public FormAlumno() {
         initComponents();
+        
+        
     }
 
     /**
@@ -42,6 +50,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
         jButtonEliminar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Alumno");
@@ -61,10 +70,25 @@ public class FormAlumno extends javax.swing.JInternalFrame {
         jRadioButtonInactivo.setText("Inactivo");
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoActionPerformed(evt);
+            }
+        });
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,9 +149,12 @@ public class FormAlumno extends javax.swing.JInternalFrame {
                             .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButtonActivo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButtonInactivo)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButtonActivo)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButtonInactivo))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -154,9 +181,10 @@ public class FormAlumno extends javax.swing.JInternalFrame {
                             .addComponent(jRadioButtonActivo)
                             .addComponent(jRadioButtonInactivo)
                             .addComponent(jLabel5))
-                        .addGap(36, 36, 36))
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNuevo)
                     .addComponent(jButtonEliminar)
@@ -169,13 +197,65 @@ public class FormAlumno extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // TODO add your handling code here:
+       
+        Alumno alumno=new Alumno();
+        alumno.setDni(Integer.parseInt(jTextDocumento.getText()));
+        alumno.setApellido(jTextApellido.getText());
+        alumno.setNombre(jTextNombre.getText());
+        if(jRadioButtonActivo.isSelected()){
+            alumno.setActivo(true);
+        }
+         if(jRadioButtonInactivo.isSelected()){
+            alumno.setActivo(false);
+        }
+         alumno.setFechaNacimiento(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+         
+         
+         adata.guardarAlumno(alumno);
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+       int dni=Integer.parseInt(jTextDocumento.getText());
+    
+       
+        Alumno alumno=adata.buscarAlumnoPorDni(dni);
+        if(alumno!=null){  
+        String nom=alumno.getNombre();
+        String ape=alumno.getApellido();
+      
+        jTextApellido.setText(ape+"");
+        jTextNombre.setText(nom+"");
+        if(alumno.isActivo()){
+            jRadioButtonActivo.setSelected(true);
+        }else{
+            jRadioButtonInactivo.setSelected(true);
+       }
+        jDateChooser1.setDate(java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+        }     
+        
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+        // TODO add your handling code here:
+        jTextDocumento.setText("");
+        jTextApellido.setText("");
+        jTextNombre.setText("");
+        jRadioButtonActivo.setSelected(false);
+        jRadioButtonInactivo.setSelected(false);
+        jDateChooser1.setDate(null);
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+         int dni=Integer.parseInt(jTextDocumento.getText());
+         Alumno alumno=adata.buscarAlumnoPorDni(dni);
+         
+         adata.eliminarAlumno(alumno.getIdAlumno());
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,6 +264,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonSalir;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
