@@ -44,7 +44,7 @@ public class InscripcionData {
 
     public Inscripcion buscarinscripcion(int id) {
         Inscripcion inscripcion = null;
-        String sql = "SELECT nombre, año FROM inscripcion WHERE IdInscripcion = ? AND estado = 1";
+        String sql = "SELECT nombre, año FROM inscripcion WHERE IdInscripto = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -198,7 +198,7 @@ public class InscripcionData {
     }
 
     public void modificarinscripcion(Inscripcion inscripcion) {
-        String sql = "UPDATE inscripcion SET IdAlumno = ?,IdMateria = ?,  nota = ? WHERE idinscripcion = ?";
+        String sql = "UPDATE inscripcion SET IdAlumno = ?,IdMateria = ?,  nota = ? WHERE IdInscripto = ?";
         PreparedStatement ps = null;
 
         try {
@@ -221,7 +221,7 @@ public class InscripcionData {
 
     public void eliminarinscripcion(int id) { // eliminar  de verdad
         try {
-            String sql = "DELETE FROM inscripcion WHERE idInscripcion = ? ";
+            String sql = "DELETE FROM inscripcion WHERE IdInscripto = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
