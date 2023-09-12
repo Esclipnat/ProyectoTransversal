@@ -287,8 +287,8 @@ private void crearTabla() {
         jTableInscripto.setModel(modeloInscriptos);
         jTableNoInscripto.setModel(modeloNoInscriptos);
 
-        jTableInscripto.setEnabled(false);
-        jTableNoInscripto.setEnabled(false);
+        jTableInscripto.setEnabled(true);
+        jTableNoInscripto.setEnabled(true);
 
         jTableInscripto.setRowSelectionAllowed(true);
         jTableNoInscripto.setRowSelectionAllowed(true);
