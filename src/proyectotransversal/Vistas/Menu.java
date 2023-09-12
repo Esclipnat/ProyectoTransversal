@@ -47,7 +47,7 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 988, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +129,10 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Escritorio)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +165,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuManipuNotaActionPerformed
 
     private void AlumxMateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlumxMateActionPerformed
-        Consulta consulta = new Consulta();
+        FormConsultaMateria consulta = new FormConsultaMateria();
         llamarSubMenu(consulta);
     }//GEN-LAST:event_AlumxMateActionPerformed
 
