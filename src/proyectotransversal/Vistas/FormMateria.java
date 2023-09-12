@@ -213,8 +213,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
         Boolean estado = jRadioButton1.isSelected();
         // Llama al método guardarMateria de tu clase MateriaData
         Materia materia = new Materia(codigo, nombre, año, estado);
-        boolean guardado = MateriaData.guardarMateria(materia);
-        if (guardado) {
+        materiaData.guardarmateria(materia);                                                        
+        if (true) {                                                                                             //arreglar esto
             JOptionPane.showMessageDialog(this, "Materia guardada.");
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo guardar la materia.");
@@ -242,10 +242,10 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // Código para eliminar una materia
-        String codigo = txtCodigo.getText();
+        int codigo = Integer.parseInt(txtCodigo.getText());
         // Llama al método eliminarMateria de tu clase MateriaData
-        boolean eliminado = MateriaData.eliminarMateria(codigo);
-        if (eliminado) {
+        materiaData.eliminarmateria(codigo);
+        if (true) {                                                                                 //arreglar esto
             JOptionPane.showMessageDialog(this, "Materia eliminada.");
             // Limpia los campos después de eliminar
             txtCodigo.setText("");
