@@ -35,6 +35,7 @@ private AlumnoData adata=new AlumnoData();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,8 +67,10 @@ private AlumnoData adata=new AlumnoData();
 
         jLabel6.setText("Fecha de Nacimiento:");
 
+        buttonGroup1.add(jRadioButtonActivo);
         jRadioButtonActivo.setText("Activo");
 
+        buttonGroup1.add(jRadioButtonInactivo);
         jRadioButtonInactivo.setText("Inactivo");
 
         jButtonBuscar.setText("Buscar");
@@ -182,10 +185,10 @@ private AlumnoData adata=new AlumnoData();
                             .addComponent(jRadioButtonActivo)
                             .addComponent(jRadioButtonInactivo)
                             .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNuevo)
                     .addComponent(jButtonEliminar)
@@ -204,6 +207,8 @@ private AlumnoData adata=new AlumnoData();
         alumno.setDni(Integer.parseInt(jTextDocumento.getText()));
         alumno.setApellido(jTextApellido.getText());
         alumno.setNombre(jTextNombre.getText());
+       
+       
         if(jRadioButtonActivo.isSelected()){
             alumno.setActivo(true);
         }
@@ -212,11 +217,19 @@ private AlumnoData adata=new AlumnoData();
         }
          alumno.setFechaNacimiento(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
          
+         if(adata.buscarAlumnoPorDni(Integer.parseInt(jTextDocumento.getText()))==null){
+             adata.guardarAlumno(alumno);
+         vaciar();
+         } else{
+             JOptionPane.showMessageDialog(null, "Ya existe un alumno con este DNI");
+         }
          
-         adata.guardarAlumno(alumno);
        }catch(NumberFormatException ex){
          JOptionPane.showMessageDialog(null, "En el campo dni solo deben ingresarse numeros");
-       }
+
+         }catch (NullPointerException ex){
+             JOptionPane.showMessageDialog(null, "No debe haber campos vacios");
+         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
@@ -247,12 +260,8 @@ private AlumnoData adata=new AlumnoData();
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
-        jTextDocumento.setText("");
-        jTextApellido.setText("");
-        jTextNombre.setText("");
-        jRadioButtonActivo.setSelected(false);
-        jRadioButtonInactivo.setSelected(false);
-        jDateChooser1.setDate(null);
+vaciar();
+
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
@@ -260,10 +269,12 @@ private AlumnoData adata=new AlumnoData();
          Alumno alumno=adata.buscarAlumnoPorDni(dni);
          
          adata.eliminarAlumno(alumno.getIdAlumno());
+         vaciar();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
@@ -282,4 +293,13 @@ private AlumnoData adata=new AlumnoData();
     private javax.swing.JTextField jTextDocumento;
     private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
+
+public void vaciar(){
+        jTextDocumento.setText("");
+        jTextApellido.setText("");
+        jTextNombre.setText("");
+        jRadioButtonActivo.setSelected(true);
+        //jRadioButtonInactivo.setSelected(false);
+        jDateChooser1.setDate(null);
+}
 }
