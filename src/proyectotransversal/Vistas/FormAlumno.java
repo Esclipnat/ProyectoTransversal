@@ -6,6 +6,7 @@ package proyectotransversal.Vistas;
 
 import java.sql.Connection;
 import java.time.ZoneId;
+import javax.swing.JOptionPane;
 import proyectotransversal.AccesoAData.AlumnoData;
 import proyectotransversal.Entidades.Alumno;
 
@@ -197,8 +198,9 @@ private AlumnoData adata=new AlumnoData();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-       
+       try{
         Alumno alumno=new Alumno();
+       
         alumno.setDni(Integer.parseInt(jTextDocumento.getText()));
         alumno.setApellido(jTextApellido.getText());
         alumno.setNombre(jTextNombre.getText());
@@ -212,6 +214,9 @@ private AlumnoData adata=new AlumnoData();
          
          
          adata.guardarAlumno(alumno);
+       }catch(NumberFormatException ex){
+         JOptionPane.showMessageDialog(null, "En el campo dni solo deben ingresarse numeros");
+       }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
