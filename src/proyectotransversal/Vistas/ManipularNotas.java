@@ -56,6 +56,12 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Seleccione un alumno:");
 
+        jcbAlumnos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbAlumnosItemStateChanged(evt);
+            }
+        });
+
         jTableMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -145,6 +151,10 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
         }
         actualizar();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jcbAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbAlumnosItemStateChanged
+        actualizar();
+    }//GEN-LAST:event_jcbAlumnosItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
