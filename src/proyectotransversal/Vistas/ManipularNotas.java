@@ -83,6 +83,11 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
         });
 
         jButtonAtras.setText("Atras");
+        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,6 +164,10 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
     private void jcbAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbAlumnosItemStateChanged
         actualizar();
     }//GEN-LAST:event_jcbAlumnosItemStateChanged
+
+    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonAtrasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
