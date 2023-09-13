@@ -42,30 +42,24 @@ public class InscripcionData {
         }
     }
 
-    public Inscripcion buscarinscripcion(int id) {
-        Inscripcion inscripcion = null;
-        String sql = "SELECT nombre, año FROM inscripcion WHERE IdInscripto = ? AND estado = 1";
-        PreparedStatement ps = null;
+    public int buscarnota(int idAlumno, int idMateria) {
+        List<Inscripcion> ListaInscripcions = new ArrayList<>();
+        
         try {
+            String sql = "SELECT nota FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
+            PreparedStatement ps = null;
             ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
             ResultSet rs = ps.executeQuery();
-
+           
             if (rs.next()) {
-                inscripcion = new Inscripcion();
-                inscripcion.setIdInscripcion(id);
-                inscripcion.setAlumno(alumnoData.buscarAlumno(rs.getInt("IdAlumno")));
-                inscripcion.setMateria(materiaData.buscarmateria(rs.getInt("IdMateria")));
-                inscripcion.setNota(rs.getInt("nota"));
-
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe el inscripcion");
+                return rs.getInt("nota");
             }
-            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion " + ex.getMessage());
         }
-        return inscripcion;
+        return 0;
     }
 
     public List<Inscripcion> listarinscripcions() {
@@ -217,7 +211,7 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion " + ex.getMessage());
         }
-    }     
+    }
 
     public void eliminarinscripcion(int id) { // eliminar  de verdad
         try {
@@ -233,6 +227,6 @@ public class InscripcionData {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla inscripcion");
         }
-    }                      
+    }
 
 }
