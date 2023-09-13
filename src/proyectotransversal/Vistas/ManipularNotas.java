@@ -4,6 +4,7 @@
  */
 package proyectotransversal.Vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectotransversal.AccesoAData.AlumnoData;
 import proyectotransversal.AccesoAData.InscripcionData;
@@ -68,7 +69,12 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableMaterias);
 
-        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setText("Cambiar Nota");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
 
         jButtonAtras.setText("Atras");
 
@@ -79,9 +85,9 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(206, 206, 206)
                         .addComponent(jButtonAtras))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,6 +128,24 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+         int filas = jTableMaterias.getSelectedRow();
+        if (filas != -1) {
+            int idMateria = (int) jTableMaterias.getValueAt(filas, 0);
+            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+            int idAlumno = aux.getIdAlumno();
+            try{
+               int nota = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su nota"));
+            inscripcionData.actualizarNota(idAlumno, idMateria,nota); 
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "La nota es numerica");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }
+        actualizar();
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtras;
@@ -142,6 +166,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
         modelo.addColumn("ID");
         modelo.addColumn("Año de cursada");
         modelo.addColumn("Nombre de la Materia");
+        modelo.addColumn("Nota");
         jTableMaterias.setModel(modelo);
         jTableMaterias.setEnabled(true);
         jTableMaterias.setRowSelectionAllowed(true);
@@ -154,7 +179,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
 
         if (inscripcionData.obtenerMateriasCursadas(id) != null) {
             for (Materia materia : inscripcionData.obtenerMateriasCursadas(id)) {
-                modelo.addRow(new Object[]{materia.getIdMateria(), materia.getAñoMateria(), materia.getNombre()});
+                modelo.addRow(new Object[]{materia.getIdMateria(), materia.getAñoMateria(), materia.getNombre(),inscripcionData.buscarnota(id, materia.getIdMateria())});
             }
         } else {
             System.out.println("No hay datos en el array");
