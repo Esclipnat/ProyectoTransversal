@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package proyectotransversal.Vistas;
 
 import javax.swing.JOptionPane;
@@ -13,14 +9,22 @@ import proyectotransversal.Entidades.Alumno;
 import proyectotransversal.Entidades.Inscripcion;
 import proyectotransversal.Entidades.Materia;
 
-/**
- *
- * @author crist
- */
 public class ManejoInscripcion extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modeloInscriptos = new DefaultTableModel();
-    private DefaultTableModel modeloNoInscriptos = new DefaultTableModel();
+    private DefaultTableModel modeloInscriptos = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+    private DefaultTableModel modeloNoInscriptos = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
     InscripcionData inscripcionData = new InscripcionData();
     AlumnoData alumnoData = new AlumnoData();
     MateriaData materiaData = new MateriaData();
@@ -86,6 +90,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableNoInscripto.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableNoInscripto);
 
         jTableInscripto.setModel(new javax.swing.table.DefaultTableModel(
@@ -99,6 +104,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableInscripto.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTableInscripto);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -226,31 +232,31 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
 
     private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
         int filas = jTableInscripto.getSelectedRow();
-        if (filas!=-1){
-            int idMateria = (int) jTableInscripto.getValueAt(filas,0);
+        if (filas != -1) {
+            int idMateria = (int) jTableInscripto.getValueAt(filas, 0);
             Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
             int idAlumno = aux.getIdAlumno();
             inscripcionData.borrarInscripcionMateriaAlumno(idAlumno, idMateria);
-        }else{  
-            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
         }
         actualizar();
     }//GEN-LAST:event_jButtonBajaActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         int filas = jTableNoInscripto.getSelectedRow();
-        if (filas!=-1){
-            int idMateria = (int) jTableNoInscripto.getValueAt(filas,0);
+        if (filas != -1) {
+            int idMateria = (int) jTableNoInscripto.getValueAt(filas, 0);
             Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
             int idAlumno = aux.getIdAlumno();
-            
+
             Alumno alumno = alumnoData.buscarAlumno(idAlumno);
             Materia materia = materiaData.buscarmateria(idMateria);
 
-            Inscripcion inscripcion = new Inscripcion(0,alumno,materia,0);
+            Inscripcion inscripcion = new Inscripcion(0, alumno, materia, 0);
             inscripcionData.guardarinscripcion(inscripcion);
-        }else{  
-            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
         }
         actualizar();
     }//GEN-LAST:event_jButtonAltaActionPerformed
@@ -295,7 +301,6 @@ private void crearTabla() {
     }
 
     private void cargarTabla() {
-        InscripcionData inscripcionData = new InscripcionData();
         Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
         int id = aux.getIdAlumno();
 
@@ -329,12 +334,13 @@ private void crearTabla() {
         for (; f >= 0; f--) {
             modeloInscriptos.removeRow(f);
         }
-         int f2 = jTableNoInscripto.getRowCount() - 1;
+        int f2 = jTableNoInscripto.getRowCount() - 1;
         for (; f2 >= 0; f2--) {
             modeloNoInscriptos.removeRow(f2);
         }
     }
-    private void actualizar(){
+
+    private void actualizar() {
         borrarfila();
         cargarTabla();
     }
