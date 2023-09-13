@@ -4,20 +4,33 @@
  */
 package proyectotransversal.Vistas;
 
+import javax.swing.table.DefaultTableModel;
+import proyectotransversal.AccesoAData.AlumnoData;
+import proyectotransversal.AccesoAData.InscripcionData;
 import proyectotransversal.Entidades.Alumno;
+import proyectotransversal.Entidades.Materia;
 
 /**
  *
  * @author crist
  */
 public class ManipularNotas extends javax.swing.JInternalFrame {
-
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    AlumnoData alumnoData = new AlumnoData();
+    InscripcionData inscripcionData = new InscripcionData();
     /**
      * Creates new form ManipularNotas
      */
     public ManipularNotas() {
         initComponents();
+        crearTabla();
         cargarcombobox();
+        actualizar();
     }
 
     /**
@@ -31,9 +44,9 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxAlumno = new javax.swing.JComboBox<>();
+        jcbAlumnos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMaterias = new javax.swing.JTable();
         jButtonGuardar = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
 
@@ -42,7 +55,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Seleccione un alumno:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +66,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableMaterias);
 
         jButtonGuardar.setText("Guardar");
 
@@ -79,7 +92,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(102, 102, 102)
-                                        .addComponent(jComboBoxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jcbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(220, 220, 220)
                                 .addComponent(jLabel1)))
@@ -94,7 +107,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBoxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -113,16 +126,51 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JComboBox<String> jComboBoxAlumno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableMaterias;
+    private javax.swing.JComboBox<Alumno> jcbAlumnos;
     // End of variables declaration//GEN-END:variables
-}
-private void cargarcombobox() {
+
+    private void cargarcombobox() {
         for (Alumno alumno : alumnoData.listarAlumnos()) {
             jcbAlumnos.addItem(alumno);
-}
+        }
+    }
+    private void crearTabla() {
+        modelo.addColumn("ID");
+        modelo.addColumn("Año de cursada");
+        modelo.addColumn("Nombre de la Materia");
+        jTableMaterias.setModel(modelo);
+        jTableMaterias.setEnabled(true);
+        jTableMaterias.setRowSelectionAllowed(true);
+        
 
     }
+    private void cargarTabla() {
+        Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+        int id = aux.getIdAlumno();
+
+        if (inscripcionData.obtenerMateriasCursadas(id) != null) {
+            for (Materia materia : inscripcionData.obtenerMateriasCursadas(id)) {
+                modelo.addRow(new Object[]{materia.getIdMateria(), materia.getAñoMateria(), materia.getNombre()});
+            }
+        } else {
+            System.out.println("No hay datos en el array");
+        }
+    }
+    private void borrarfila() {
+        int f = jTableMaterias.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+    }
+    private void actualizar() {
+        borrarfila();
+        cargarTabla();
+    }
+}
+
+
+    

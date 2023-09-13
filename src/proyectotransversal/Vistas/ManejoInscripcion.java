@@ -326,7 +326,6 @@ private void crearTabla() {
         for (Alumno alumno : alumnoData.listarAlumnos()) {
             jcbAlumnos.addItem(alumno);
         }
-
     }
 
     private void borrarfila() {
