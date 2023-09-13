@@ -142,7 +142,11 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
             int idAlumno = aux.getIdAlumno();
             try{
                int nota = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su nota"));
-            inscripcionData.actualizarNota(idAlumno, idMateria,nota); 
+                if (nota<0 || nota > 100) {
+                    JOptionPane.showMessageDialog(this, "La nota tiene que ser entre 0 y 100");
+                }else{
+                    inscripcionData.actualizarNota(idAlumno, idMateria,nota); 
+                }
             }catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(this, "La nota es numerica");
             }
