@@ -116,7 +116,7 @@ public class MateriaData {
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
-                JOptionPane.showMessageDialog(null, " Se eliminó el materia.");
+                JOptionPane.showMessageDialog(null, " Se eliminó la materia.");
             }
             ps.close();
         } catch (SQLException e) {
