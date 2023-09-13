@@ -260,7 +260,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
         // Código para buscar una materia
-        int codigo = Integer.parseInt(txtCodigo.getText());
+        int codigo = Integer.parseInt(materia.getAñoMateria());
         Materia materia = materiaData.buscarmateria(codigo);
         // Actualiza los campos de texto con los datos de la materia encontrada
         if (materia != null) {
