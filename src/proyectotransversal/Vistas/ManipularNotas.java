@@ -73,6 +73,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableMaterias.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableMaterias);
 
         jButtonGuardar.setText("Cambiar Nota");

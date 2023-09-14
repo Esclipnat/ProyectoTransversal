@@ -15,15 +15,15 @@ import proyectotransversal.Entidades.Alumno;
  * @author crist
  */
 public class FormAlumno extends javax.swing.JInternalFrame {
-private AlumnoData adata=new AlumnoData();
+
+    private AlumnoData adata = new AlumnoData();
 
     /**
      * Creates new form FormAlumno
      */
     public FormAlumno() {
         initComponents();
-        
-        
+
     }
 
     /**
@@ -201,35 +201,34 @@ private AlumnoData adata=new AlumnoData();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-       try{
-        Alumno alumno=new Alumno();
-       
-        alumno.setDni(Integer.parseInt(jTextDocumento.getText()));
-        alumno.setApellido(jTextApellido.getText());
-        alumno.setNombre(jTextNombre.getText());
-       
-       
-        if(jRadioButtonActivo.isSelected()){
-            alumno.setActivo(true);
-        }
-         if(jRadioButtonInactivo.isSelected()){
-            alumno.setActivo(false);
-        }
-         alumno.setFechaNacimiento(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-         
-         if(adata.buscarAlumnoPorDni(Integer.parseInt(jTextDocumento.getText()))==null){
-             adata.guardarAlumno(alumno);
-         vaciar();
-         } else{
-             JOptionPane.showMessageDialog(null, "Ya existe un alumno con este DNI");
-         }
-         
-       }catch(NumberFormatException ex){
-         JOptionPane.showMessageDialog(null, "En el campo dni solo deben ingresarse numeros");
+        try {
+            Alumno alumno = new Alumno();
 
-         }catch (NullPointerException ex){
-             JOptionPane.showMessageDialog(null, "No debe haber campos vacios");
-         }
+            alumno.setDni(Integer.parseInt(jTextDocumento.getText()));
+            alumno.setApellido(jTextApellido.getText());
+            alumno.setNombre(jTextNombre.getText());
+
+            if (jRadioButtonActivo.isSelected()) {
+                alumno.setActivo(true);
+            }
+            if (jRadioButtonInactivo.isSelected()) {
+                alumno.setActivo(false);
+            }
+            alumno.setFechaNacimiento(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+            if (adata.buscarAlumnoPorDni(Integer.parseInt(jTextDocumento.getText())) == null) {
+                adata.guardarAlumno(alumno);
+                vaciar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya existe un alumno con este DNI");
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "En el campo dni solo deben ingresarse numeros");
+
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "No debe haber campos vacios");
+        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
@@ -238,38 +237,44 @@ private AlumnoData adata=new AlumnoData();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-       int dni=Integer.parseInt(jTextDocumento.getText());
-    
-       
-        Alumno alumno=adata.buscarAlumnoPorDni(dni);
-        if(alumno!=null){  
-        String nom=alumno.getNombre();
-        String ape=alumno.getApellido();
-      
-        jTextApellido.setText(ape+"");
-        jTextNombre.setText(nom+"");
-        if(alumno.isActivo()){
-            jRadioButtonActivo.setSelected(true);
-        }else{
-            jRadioButtonInactivo.setSelected(true);
-       }
-        jDateChooser1.setDate(java.sql.Date.valueOf(alumno.getFechaNacimiento()));
-        }     
-        
+        try {
+            int dni = Integer.parseInt(jTextDocumento.getText());
+
+            Alumno alumno = adata.buscarAlumnoPorDni(dni);
+            if (alumno != null) {
+                String nom = alumno.getNombre();
+                String ape = alumno.getApellido();
+
+                jTextApellido.setText(ape + "");
+                jTextNombre.setText(nom + "");
+                if (alumno.isActivo()) {
+                    jRadioButtonActivo.setSelected(true);
+                } else {
+                    jRadioButtonInactivo.setSelected(true);
+                }
+                jDateChooser1.setDate(java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error: campos vacios ");
+        }
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
-vaciar();
+        vaciar();
 
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-         int dni=Integer.parseInt(jTextDocumento.getText());
-         Alumno alumno=adata.buscarAlumnoPorDni(dni);
-         
-         adata.eliminarAlumno(alumno.getIdAlumno());
-         vaciar();
+        try {
+            int dni = Integer.parseInt(jTextDocumento.getText());
+            Alumno alumno = adata.buscarAlumnoPorDni(dni);
+            adata.eliminarAlumno(alumno.getIdAlumno());
+            vaciar();
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error: campos vacios ");
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
 
@@ -294,12 +299,12 @@ vaciar();
     private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
 
-public void vaciar(){
+    public void vaciar() {
         jTextDocumento.setText("");
         jTextApellido.setText("");
         jTextNombre.setText("");
         jRadioButtonActivo.setSelected(true);
         //jRadioButtonInactivo.setSelected(false);
         jDateChooser1.setDate(null);
-}
+    }
 }
