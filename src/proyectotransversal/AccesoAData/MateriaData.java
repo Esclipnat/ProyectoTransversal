@@ -20,22 +20,24 @@ public class MateriaData {
     }
 
     public void guardarmateria(Materia materia) {
-        String sql = "INSERT INTO materia (nombre, año, estado) VALUES (?, ?, ?)";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, materia.getNombre());
-            ps.setInt(2, materia.getAñoMateria());
-            ps.setBoolean(3, materia.isActivo()); // if reducido
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                materia.setIdMateria(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "materia añadido con exito.");
+        System.out.println(materia.getIdMateria());
+            String sql = "INSERT INTO materia (nombre, año, estado) VALUES (?, ?, ?)";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, materia.getNombre());
+                ps.setInt(2, materia.getAñoMateria());
+                ps.setBoolean(3, materia.isActivo()); // if reducido
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    materia.setIdMateria(rs.getInt(1));
+                    JOptionPane.showMessageDialog(null, "Materia añadido con exito. Con el Id ["+rs.getInt(1)+"]");
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia" + ex.getMessage());
             }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia" + ex.getMessage());
-        }
+        
     }
 
     public Materia buscarmateria(int id) {
@@ -55,7 +57,7 @@ public class MateriaData {
                 materia.setActivo(rs.getBoolean("estado"));
 
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el materia");
+                JOptionPane.showMessageDialog(null, "No existe la materia");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -63,7 +65,6 @@ public class MateriaData {
         }
         return materia;
     }
-
 
     public List<Materia> listarmaterias() {
         List<Materia> ListaMaterias = new ArrayList<>();

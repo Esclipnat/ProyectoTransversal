@@ -13,13 +13,15 @@ import proyectotransversal.Entidades.Materia;
  * @author crist
  */
 public class FormMateria extends javax.swing.JInternalFrame {
-    
+
     MateriaData materiaData = new MateriaData();
+
     /**
      * Creates new form FormMateria
      */
     public FormMateria() {
         initComponents();
+        limpiar();
     }
 
     /**
@@ -207,18 +209,18 @@ public class FormMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        int codigo = Integer.parseInt(txtCodigo.getText());
-        String nombre = txtNombre.getText();
-        int año = Integer.parseInt(txtAño.getText());
-        Boolean estado = jRadioButton1.isSelected();
-        // Llama al método guardarMateria de tu clase MateriaData
-        Materia materia = new Materia(codigo, nombre, año, estado);
-        materiaData.guardarmateria(materia);                                                        
-       /* if (true) {                                                                                             //arreglar esto
-            JOptionPane.showMessageDialog(this, "Materia guardada.");
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo guardar la materia.");
-        }*/
+        try {
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            String nombre = txtNombre.getText();
+            int año = Integer.parseInt(txtAño.getText());
+            Boolean estado = jRadioButton1.isSelected();
+            // Llama al método guardarMateria de tu clase MateriaData
+            Materia materia = new Materia(codigo, nombre, año, estado);
+            materiaData.guardarmateria(materia);
+            limpiar();
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error: campos vacios o mal ingresados" + ex.getMessage());
+        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -234,10 +236,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
         // Código para limpiar los campos y crear una nueva materia
-        txtCodigo.setText("");
-        txtNombre.setText("");
-        txtAño.setText("");
-        jRadioButton1.setSelected(false);
+        limpiar();
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
@@ -245,30 +244,25 @@ public class FormMateria extends javax.swing.JInternalFrame {
         int codigo = Integer.parseInt(txtCodigo.getText());
         // Llama al método eliminarMateria de tu clase MateriaData
         materiaData.eliminarmateria(codigo);
-        if (true) {                                                                                 //arreglar esto
-            //JOptionPane.showMessageDialog(this, "Materia eliminada.");
-            // Limpia los campos después de eliminar
-            txtCodigo.setText("");
-            txtNombre.setText("");
-            txtAño.setText("");
-            jRadioButton1.setSelected(false);
-        } else {
-            //JOptionPane.showMessageDialog(this, "No se pudo eliminar la materia.");
-        }
+       limpiar();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
         // Código para buscar una materia
-        int codigo = Integer.parseInt(txtCodigo.getText());
-        Materia materia = materiaData.buscarmateria(codigo);
-        // Actualiza los campos de texto con los datos de la materia encontrada
-        if (materia != null) {
-            txtNombre.setText(materia.getNombre());
-            txtAño.setText(String.valueOf(materia.getAñoMateria()));
-            jRadioButton1.setSelected(materia.isActivo());
-        } else {
-            //JOptionPane.showMessageDialog(this, "Materia no encontrada.");
+        try {
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            Materia materia = materiaData.buscarmateria(codigo);
+            // Actualiza los campos de texto con los datos de la materia encontrada
+            if (materia != null) {
+                txtNombre.setText(materia.getNombre());
+                txtAño.setText(String.valueOf(materia.getAñoMateria()));
+                jRadioButton1.setSelected(materia.isActivo());
+            }else{
+                limpiar();
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error: campos vacios " + ex.getMessage());
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -292,4 +286,10 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+   private void limpiar(){
+       txtCodigo.setText("");
+        txtNombre.setText("");
+        txtAño.setText("");
+        jRadioButton1.setSelected(true);
+   }
 }
