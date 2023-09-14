@@ -253,6 +253,9 @@ public class FormAlumno extends javax.swing.JInternalFrame {
                     jRadioButtonInactivo.setSelected(true);
                 }
                 jDateChooser1.setDate(java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+            }else{
+                 JOptionPane.showMessageDialog(null, "No hay registros de un alumno con este DNI");
+                 vaciar();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error: campos vacios ");
