@@ -1,5 +1,7 @@
 package proyectotransversal.Vistas;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectotransversal.AccesoAData.AlumnoData;
@@ -91,6 +93,11 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
             }
         ));
         jTableNoInscripto.getTableHeader().setReorderingAllowed(false);
+        jTableNoInscripto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableNoInscriptoKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableNoInscripto);
 
         jTableInscripto.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,6 +112,11 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
             }
         ));
         jTableInscripto.getTableHeader().setReorderingAllowed(false);
+        jTableInscripto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableInscriptoKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableInscripto);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -231,35 +243,37 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbAlumnosItemStateChanged
 
     private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
-        int filas = jTableInscripto.getSelectedRow();
-        if (filas != -1) {
-            int idMateria = (int) jTableInscripto.getValueAt(filas, 0);
-            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
-            int idAlumno = aux.getIdAlumno();
-            inscripcionData.borrarInscripcionMateriaAlumno(idAlumno, idMateria);
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }
-        actualizar();
+        baja();
     }//GEN-LAST:event_jButtonBajaActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
-        int filas = jTableNoInscripto.getSelectedRow();
-        if (filas != -1) {
-            int idMateria = (int) jTableNoInscripto.getValueAt(filas, 0);
-            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
-            int idAlumno = aux.getIdAlumno();
-
-            Alumno alumno = alumnoData.buscarAlumno(idAlumno);
-            Materia materia = materiaData.buscarmateria(idMateria);
-
-            Inscripcion inscripcion = new Inscripcion(0, alumno, materia, 0);
-            inscripcionData.guardarinscripcion(inscripcion);
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }
-        actualizar();
+        alta();
     }//GEN-LAST:event_jButtonAltaActionPerformed
+
+    private void jTableNoInscriptoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableNoInscriptoKeyPressed
+        // TODO add your handling code here:
+        /*
+        jTableNoInscripto.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    alta();
+                }
+            }
+        });*/
+        
+    }//GEN-LAST:event_jTableNoInscriptoKeyPressed
+
+    private void jTableInscriptoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableInscriptoKeyPressed
+        // TODO add your handling code here:
+        /*
+        jTableInscripto.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    baja();
+                }
+            }
+        });*/
+    }//GEN-LAST:event_jTableInscriptoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -342,5 +356,34 @@ private void crearTabla() {
     private void actualizar() {
         borrarfila();
         cargarTabla();
+    }
+    private void baja(){
+        int filas = jTableInscripto.getSelectedRow();
+        if (filas != -1) {
+            int idMateria = (int) jTableInscripto.getValueAt(filas, 0);
+            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+            int idAlumno = aux.getIdAlumno();
+            inscripcionData.borrarInscripcionMateriaAlumno(idAlumno, idMateria);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }
+        actualizar();
+    }
+    private void alta(){
+        int filas = jTableNoInscripto.getSelectedRow();
+        if (filas != -1) {
+            int idMateria = (int) jTableNoInscripto.getValueAt(filas, 0);
+            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+            int idAlumno = aux.getIdAlumno();
+
+            Alumno alumno = alumnoData.buscarAlumno(idAlumno);
+            Materia materia = materiaData.buscarmateria(idMateria);
+
+            Inscripcion inscripcion = new Inscripcion(0, alumno, materia, 0);
+            inscripcionData.guardarinscripcion(inscripcion);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }
+        actualizar();
     }
 }

@@ -4,6 +4,8 @@
  */
 package proyectotransversal.Vistas;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectotransversal.AccesoAData.AlumnoData;
@@ -16,6 +18,7 @@ import proyectotransversal.Entidades.Materia;
  * @author crist
  */
 public class ManipularNotas extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -24,6 +27,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
     };
     AlumnoData alumnoData = new AlumnoData();
     InscripcionData inscripcionData = new InscripcionData();
+
     /**
      * Creates new form ManipularNotas
      */
@@ -74,6 +78,11 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
             }
         ));
         jTableMaterias.getTableHeader().setReorderingAllowed(false);
+        jTableMaterias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableMateriasKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableMaterias);
 
         jButtonGuardar.setText("Cambiar Nota");
@@ -141,25 +150,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-         int filas = jTableMaterias.getSelectedRow();
-        if (filas != -1) {
-            int idMateria = (int) jTableMaterias.getValueAt(filas, 0);
-            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
-            int idAlumno = aux.getIdAlumno();
-            try{
-               int nota = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su nota"));
-                if (nota<0 || nota > 100) {
-                    JOptionPane.showMessageDialog(this, "La nota tiene que ser entre 0 y 100");
-                }else{
-                    inscripcionData.actualizarNota(idAlumno, idMateria,nota); 
-                }
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(this, "La nota es numerica");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }
-        actualizar();
+        añadirNota();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jcbAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbAlumnosItemStateChanged
@@ -169,6 +160,17 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
+
+    private void jTableMateriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMateriasKeyPressed
+        // TODO add your handling code here:
+        /*jTableMaterias.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    añadirNota();
+                }
+            }
+        });*/
+    }//GEN-LAST:event_jTableMateriasKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -186,6 +188,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
             jcbAlumnos.addItem(alumno);
         }
     }
+
     private void crearTabla() {
         modelo.addColumn("ID");
         modelo.addColumn("Año de cursada");
@@ -194,32 +197,53 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
         jTableMaterias.setModel(modelo);
         jTableMaterias.setEnabled(true);
         jTableMaterias.setRowSelectionAllowed(true);
-        
 
     }
+
     private void cargarTabla() {
         Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
         int id = aux.getIdAlumno();
 
         if (inscripcionData.obtenerMateriasCursadas(id) != null) {
             for (Materia materia : inscripcionData.obtenerMateriasCursadas(id)) {
-                modelo.addRow(new Object[]{materia.getIdMateria(), materia.getAñoMateria(), materia.getNombre(),inscripcionData.buscarnota(id, materia.getIdMateria())});
+                modelo.addRow(new Object[]{materia.getIdMateria(), materia.getAñoMateria(), materia.getNombre(), inscripcionData.buscarnota(id, materia.getIdMateria())});
             }
         } else {
             System.out.println("No hay datos en el array");
         }
     }
+
     private void borrarfila() {
         int f = jTableMaterias.getRowCount() - 1;
         for (; f >= 0; f--) {
             modelo.removeRow(f);
         }
     }
+
     private void actualizar() {
         borrarfila();
         cargarTabla();
     }
+
+    private void añadirNota() {
+        int filas = jTableMaterias.getSelectedRow();
+        if (filas != -1) {
+            int idMateria = (int) jTableMaterias.getValueAt(filas, 0);
+            Alumno aux = (Alumno) jcbAlumnos.getSelectedItem();
+            int idAlumno = aux.getIdAlumno();
+            try {
+                int nota = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su nota"));
+                if (nota < 0 || nota > 100) {
+                    JOptionPane.showMessageDialog(this, "La nota tiene que ser entre 0 y 100");
+                } else {
+                    inscripcionData.actualizarNota(idAlumno, idMateria, nota);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "La nota es numerica");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }
+        actualizar();
+    }
 }
-
-
-    
