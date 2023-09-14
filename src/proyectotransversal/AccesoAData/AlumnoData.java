@@ -89,7 +89,7 @@ public class AlumnoData {
                 alumno.setActivo(rs.getBoolean("estado"));
 
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el alumno");
+                //JOptionPane.showMessageDialog(null, "No existe el alumno");
             }
             ps.close();
         } catch (SQLException ex) {
