@@ -21,12 +21,17 @@ public class MateriaData {
 
     public void guardarmateria(Materia materia) {
         System.out.println(materia.getIdMateria());
-            String sql = "INSERT INTO materia (nombre, año, estado) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO materia (nombre, año, estado, idMateria) VALUES (?, ?, ?,?)";
             try {
                 PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, materia.getNombre());
                 ps.setInt(2, materia.getAñoMateria());
                 ps.setBoolean(3, materia.isActivo()); // if reducido
+                if (materia.getIdMateria()==0) {
+                    ps.setNull(4, 0);
+                }else{
+                    ps.setInt(4, (int) materia.getIdMateria());
+                }
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {

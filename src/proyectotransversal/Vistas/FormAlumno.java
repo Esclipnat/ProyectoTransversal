@@ -23,6 +23,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
      */
     public FormAlumno() {
         initComponents();
+        nuevo();
 
     }
 
@@ -253,9 +254,11 @@ public class FormAlumno extends javax.swing.JInternalFrame {
                     jRadioButtonInactivo.setSelected(true);
                 }
                 jDateChooser1.setDate(java.sql.Date.valueOf(alumno.getFechaNacimiento()));
-            }else{
-                 JOptionPane.showMessageDialog(null, "No hay registros de un alumno con este DNI");
-                 vaciar();
+                buscar();
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay registros de un alumno con este DNI");
+                nuevo();
+                vaciar();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error: campos vacios ");
@@ -265,8 +268,8 @@ public class FormAlumno extends javax.swing.JInternalFrame {
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
+        nuevo();
         vaciar();
-
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
@@ -274,6 +277,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(jTextDocumento.getText());
             Alumno alumno = adata.buscarAlumnoPorDni(dni);
             adata.eliminarAlumno(alumno.getIdAlumno());
+            nuevo();
             vaciar();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error: campos vacios ");
@@ -310,4 +314,15 @@ public class FormAlumno extends javax.swing.JInternalFrame {
         //jRadioButtonInactivo.setSelected(false);
         jDateChooser1.setDate(null);
     }
+
+    private void nuevo() {
+        jButtonEliminar.setEnabled(false);
+        jButtonGuardar.setEnabled(true);
+    }
+
+    private void buscar() {
+        jButtonEliminar.setEnabled(true);
+        jButtonGuardar.setEnabled(false);
+    }
+
 }

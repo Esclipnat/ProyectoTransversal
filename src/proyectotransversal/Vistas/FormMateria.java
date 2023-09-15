@@ -210,12 +210,17 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         try {
-            int codigo = Integer.parseInt(txtCodigo.getText());
+            Materia materia;
             String nombre = txtNombre.getText();
             int año = Integer.parseInt(txtAño.getText());
             Boolean estado = jRadioButton1.isSelected();
+            if (txtCodigo.getText().isEmpty()) {
+                materia = new Materia(nombre, año, estado);
+            } else {
+                int codigo = Integer.parseInt(txtCodigo.getText());
+                materia = new Materia(codigo, nombre, año, estado);
+            }
             // Llama al método guardarMateria de tu clase MateriaData
-            Materia materia = new Materia(codigo, nombre, año, estado);
             materiaData.guardarmateria(materia);
             limpiar();
         } catch (NumberFormatException ex) {
@@ -244,7 +249,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
         int codigo = Integer.parseInt(txtCodigo.getText());
         // Llama al método eliminarMateria de tu clase MateriaData
         materiaData.eliminarmateria(codigo);
-       limpiar();
+        limpiar();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
@@ -258,7 +263,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
                 txtNombre.setText(materia.getNombre());
                 txtAño.setText(String.valueOf(materia.getAñoMateria()));
                 jRadioButton1.setSelected(materia.isActivo());
-            }else{
+                buscar();
+            } else {
                 limpiar();
             }
         } catch (NumberFormatException ex) {
@@ -286,10 +292,21 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
-   private void limpiar(){
-       txtCodigo.setText("");
+   private void limpiar() {
+        txtCodigo.setText("");
         txtNombre.setText("");
         txtAño.setText("");
         jRadioButton1.setSelected(true);
-   }
+        nuevo();
+    }
+
+    private void nuevo() {
+        jButtonEliminar.setEnabled(false);
+        jButtonGuardar.setEnabled(true);
+    }
+
+    private void buscar() {
+        jButtonEliminar.setEnabled(true);
+        jButtonGuardar.setEnabled(false);
+    }
 }
