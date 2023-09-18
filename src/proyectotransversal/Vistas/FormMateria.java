@@ -51,6 +51,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jRadioButton1 = new javax.swing.JRadioButton();
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Materia");
 
         jLabel2.setText("Codigo");
@@ -153,14 +154,14 @@ public class FormMateria extends javax.swing.JInternalFrame {
                         .addComponent(jButtonGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSalir)
-                        .addGap(0, 47, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jSeparator1)
+                        .addGap(0, 221, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(258, 258, 258))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +194,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
                     .addComponent(jButtonSalir)
                     .addComponent(jButtonEliminar)
                     .addComponent(jButtonNuevo))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         txtCodigo.getAccessibleContext().setAccessibleName("");

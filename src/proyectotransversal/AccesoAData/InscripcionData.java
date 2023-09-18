@@ -38,7 +38,7 @@ public class InscripcionData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion asdasd" + ex.getMessage());
         }
     }
 
