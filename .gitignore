@@ -36,3 +36,5 @@ nbproject/private/private.xml
 *.xml
 nbproject/private/private.properties
 /dist/
+nbproject/private/private.properties
+*.properties
