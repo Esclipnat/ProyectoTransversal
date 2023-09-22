@@ -104,7 +104,7 @@ public class FormConsultaMateria extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jcbMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap(541, Short.MAX_VALUE)
+                        .addContainerGap(1270, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -124,7 +124,7 @@ public class FormConsultaMateria extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(424, Short.MAX_VALUE))
         );
 
         pack();

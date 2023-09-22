@@ -154,7 +154,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
                         .addComponent(jButtonGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSalir)
-                        .addGap(0, 221, Short.MAX_VALUE))))
+                        .addGap(0, 950, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -194,7 +194,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
                     .addComponent(jButtonSalir)
                     .addComponent(jButtonEliminar)
                     .addComponent(jButtonNuevo))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(371, Short.MAX_VALUE))
         );
 
         txtCodigo.getAccessibleContext().setAccessibleName("");
