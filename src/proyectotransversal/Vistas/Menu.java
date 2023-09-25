@@ -45,18 +45,20 @@ public class Menu extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Escritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setResizable(false);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel3.setText("PROYECTO TRANSVERSAL");
-        Escritorio.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, -1));
+        Escritorio.add(jLabel3);
+        jLabel3.setBounds(470, 330, 471, 43);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bg3.png"))); // NOI18N
-        Escritorio.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 1360, 100));
+        Escritorio.add(jLabel2);
+        jLabel2.setBounds(0, 300, 1360, 100);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/wallpaperflare.com_wallpaper.jpg"))); // NOI18N
-        Escritorio.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        Escritorio.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1360, 768);
 
         jMenu1.setText("Alumno");
 

@@ -61,33 +61,41 @@ public class Menu2 extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(334, 334, 334)
-                .addComponent(jLabel3)
-                .addContainerGap(555, Short.MAX_VALUE))
+            .addGap(0, 1360, Short.MAX_VALUE)
             .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
-                    .addGap(372, 372, 372)))
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EscritorioLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EscritorioLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(329, 329, 329)
-                .addComponent(jLabel3)
-                .addContainerGap(399, Short.MAX_VALUE))
+            .addGap(0, 768, Short.MAX_VALUE)
             .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(EscritorioLayout.createSequentialGroup()
-                            .addGap(300, 300, 300)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, 0)))
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EscritorioLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EscritorioLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jMenu1.setText("Alumno");
@@ -186,28 +194,28 @@ public class Menu2 extends javax.swing.JFrame {
 
     private void jMenuFormAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormAlumActionPerformed
         FormAlumno formAlumno = new FormAlumno();
-        llamarSubMenu2(formAlumno);
+        llamarSubMenu(formAlumno);
     }//GEN-LAST:event_jMenuFormAlumActionPerformed
 
     private void jMenuFormMateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormMateActionPerformed
         FormMateria formMateria = new FormMateria();
-        llamarSubMenu2(formMateria);
+        llamarSubMenu(formMateria);
     }//GEN-LAST:event_jMenuFormMateActionPerformed
 
     private void jMenuManejoInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuManejoInscripActionPerformed
         ManejoInscripcion manejoInscripcion = new ManejoInscripcion();
-        llamarSubMenu2(manejoInscripcion);
+        llamarSubMenu(manejoInscripcion);
 
     }//GEN-LAST:event_jMenuManejoInscripActionPerformed
 
     private void jMenuManipuNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuManipuNotaActionPerformed
         ManipularNotas manipularNotas = new ManipularNotas();
-        llamarSubMenu2(manipularNotas);
+        llamarSubMenu(manipularNotas);
     }//GEN-LAST:event_jMenuManipuNotaActionPerformed
 
     private void AlumxMateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlumxMateActionPerformed
         FormConsultaMateria consulta = new FormConsultaMateria();
-        llamarSubMenu2(consulta);
+        llamarSubMenu(consulta);
     }//GEN-LAST:event_AlumxMateActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
@@ -233,13 +241,13 @@ public class Menu2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -268,11 +276,12 @@ public class Menu2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuManejoInscrip;
     private javax.swing.JMenuItem jMenuManipuNota;
     // End of variables declaration//GEN-END:variables
-    public void llamarSubMenu2(JInternalFrame aux) {
+    public void llamarSubMenu(JInternalFrame aux) {
         Escritorio.removeAll();
         Escritorio.repaint();
         aux.setVisible(true);
         Escritorio.add(aux);
         Escritorio.moveToFront(aux);
     }
+    
 }
