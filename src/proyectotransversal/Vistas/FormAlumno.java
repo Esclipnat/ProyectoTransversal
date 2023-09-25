@@ -60,7 +60,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Busqueda por documento:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Apellido:");
@@ -77,7 +77,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de Nacimiento:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
-        getContentPane().add(jTextDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 290, 30));
+        getContentPane().add(jTextDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 330, 30));
         getContentPane().add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 360, -1));
         getContentPane().add(jTextApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, 360, -1));
 
@@ -98,7 +98,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, 70, 30));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 200, 30, 30));
 
         jButtonNuevo.setText("Nuevo");
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
