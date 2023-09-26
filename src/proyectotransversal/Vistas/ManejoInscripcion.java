@@ -1,5 +1,6 @@
 package proyectotransversal.Vistas;
 
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -70,11 +71,11 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Formulario de Inscripcion");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 300, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 300, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Seleccionar Alumno:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, 20));
 
         jcbAlumnos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jcbAlumnos.setBorder(null);
@@ -88,7 +89,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 jcbAlumnosActionPerformed(evt);
             }
         });
-        getContentPane().add(jcbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 400, 30));
+        getContentPane().add(jcbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 400, 30));
 
         jTableNoInscripto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTableNoInscripto.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,7 +111,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableNoInscripto);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 450, 400, 80));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 400, 80));
 
         jTableInscripto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTableInscripto.setModel(new javax.swing.table.DefaultTableModel(
@@ -132,17 +133,17 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTableInscripto);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 400, 80));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 400, 80));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Materias a las que estas Inscripto");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, 220, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 220, 20));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Materias a las que no estas Inscripto");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 240, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 240, 20));
 
         jButtonBaja.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/playlist_remove_FILL0_wght400_GRAD0_opsz24.png"))); // NOI18N
@@ -153,7 +154,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 jButtonBajaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 560, 150, 30));
+        getContentPane().add(jButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 150, 30));
 
         jButtonAlta.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonAlta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/playlist_add_check_FILL0_wght400_GRAD0_opsz24.png"))); // NOI18N
@@ -164,7 +165,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 jButtonAltaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 560, 150, 30));
+        getContentPane().add(jButtonAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 150, 30));
 
         jButtonSalir.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jButtonSalir.setText("Atras");
@@ -174,12 +175,12 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 jButtonSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 560, 70, 30));
+        getContentPane().add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, 70, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bg.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 1450, 810));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -60, 1450, 810));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/wallpaperflare.com_wallpaper.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -212,7 +213,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 }
             }
         });*/
-        
+
     }//GEN-LAST:event_jTableNoInscriptoKeyPressed
 
     private void jTableInscriptoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableInscriptoKeyPressed
@@ -311,7 +312,8 @@ private void crearTabla() {
         borrarfila();
         cargarTabla();
     }
-    private void baja(){
+
+    private void baja() {
         int filas = jTableInscripto.getSelectedRow();
         if (filas != -1) {
             int idMateria = (int) jTableInscripto.getValueAt(filas, 0);
@@ -323,7 +325,8 @@ private void crearTabla() {
         }
         actualizar();
     }
-    private void alta(){
+
+    private void alta() {
         int filas = jTableNoInscripto.getSelectedRow();
         if (filas != -1) {
             int idMateria = (int) jTableNoInscripto.getValueAt(filas, 0);

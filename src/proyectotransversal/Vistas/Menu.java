@@ -4,7 +4,11 @@
  */
 package proyectotransversal.Vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -28,10 +32,14 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Escritorio = new javax.swing.JDesktopPane();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/FondoPrincipal.png"));
+
+        Image image = icon.getImage();
+        Escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuFormAlum = new javax.swing.JMenuItem();
@@ -46,56 +54,15 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel3.setText("PROYECTO TRANSVERSAL");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bg3.png"))); // NOI18N
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/wallpaperflare.com_wallpaper.jpg"))); // NOI18N
-
-        Escritorio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1360, Short.MAX_VALUE)
-            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGap(0, 1344, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
-            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EscritorioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGap(0, 719, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Alumno");
@@ -179,13 +146,16 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Escritorio)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Escritorio)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,28 +164,28 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuFormAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormAlumActionPerformed
         FormAlumno formAlumno = new FormAlumno();
-        llamarSubMenu(formAlumno);
+        InvocarJInternalFrame(formAlumno);
     }//GEN-LAST:event_jMenuFormAlumActionPerformed
 
     private void jMenuFormMateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormMateActionPerformed
         FormMateria formMateria = new FormMateria();
-        llamarSubMenu(formMateria);
+        InvocarJInternalFrame(formMateria);
     }//GEN-LAST:event_jMenuFormMateActionPerformed
 
     private void jMenuManejoInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuManejoInscripActionPerformed
         ManejoInscripcion manejoInscripcion = new ManejoInscripcion();
-        llamarSubMenu(manejoInscripcion);
+        InvocarJInternalFrame(manejoInscripcion);
 
     }//GEN-LAST:event_jMenuManejoInscripActionPerformed
 
     private void jMenuManipuNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuManipuNotaActionPerformed
         ManipularNotas manipularNotas = new ManipularNotas();
-        llamarSubMenu(manipularNotas);
+        InvocarJInternalFrame(manipularNotas);
     }//GEN-LAST:event_jMenuManipuNotaActionPerformed
 
     private void AlumxMateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlumxMateActionPerformed
         FormConsultaMateria consulta = new FormConsultaMateria();
-        llamarSubMenu(consulta);
+        InvocarJInternalFrame(consulta);
     }//GEN-LAST:event_AlumxMateActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
@@ -262,9 +232,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AlumxMate;
     private javax.swing.JDesktopPane Escritorio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -282,6 +249,19 @@ public class Menu extends javax.swing.JFrame {
         aux.setVisible(true);
         Escritorio.add(aux);
         Escritorio.moveToFront(aux);
+    }
+    private void InvocarJInternalFrame(JInternalFrame frame){
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        BasicInternalFrameUI ui = (BasicInternalFrameUI) frame.getUI();
+        ui.setNorthPane(null);
+        //frame.setBorder(null); // Elimina el borde
+        frame.setClosable(false); // Desactiva la opción de cerrar
+        frame.setIconifiable(false); // Desactiva la opción de minimizar
+        frame.setOpaque(true); // Hace que el contenido sea opaco
+        frame.setSize(Escritorio.getSize()); // Establece el tamaño igual al del desktopPane
+        frame.setVisible(true); // Lo hace visible
+        Escritorio.add(frame); // Agrega el JInternalFrame al JDesktopPane
     }
     
 }
