@@ -111,7 +111,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableNoInscripto);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 400, 80));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 400, 120));
 
         jTableInscripto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTableInscripto.setModel(new javax.swing.table.DefaultTableModel(
@@ -133,7 +133,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTableInscripto);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 400, 80));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 400, 120));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -154,7 +154,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 jButtonBajaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 150, 30));
+        getContentPane().add(jButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, 150, 30));
 
         jButtonAlta.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonAlta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/playlist_add_check_FILL0_wght400_GRAD0_opsz24.png"))); // NOI18N
@@ -165,7 +165,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 jButtonAltaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 150, 30));
+        getContentPane().add(jButtonAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 150, 30));
 
         jButtonSalir.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jButtonSalir.setText("Atras");
@@ -175,7 +175,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 jButtonSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, 70, 30));
+        getContentPane().add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 70, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bg.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -60, 1450, 810));
