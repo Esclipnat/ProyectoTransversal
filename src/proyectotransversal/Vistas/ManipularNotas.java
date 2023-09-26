@@ -113,7 +113,7 @@ public class ManipularNotas extends javax.swing.JInternalFrame {
                 jButtonGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 210, 140, 30));
+        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, 140, 30));
 
         jButtonAtras.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonAtras.setText("Atras");
