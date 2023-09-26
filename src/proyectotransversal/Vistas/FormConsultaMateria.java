@@ -52,14 +52,14 @@ public class FormConsultaMateria extends javax.swing.JInternalFrame {
         setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listado de alumnos por materia");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-290, 170, 1915, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 370, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Seleccione una materia");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 150, -1));
 
         jcbMateria.setToolTipText("");
         jcbMateria.addItemListener(new java.awt.event.ItemListener() {
@@ -72,7 +72,7 @@ public class FormConsultaMateria extends javax.swing.JInternalFrame {
                 jcbMateriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jcbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 300, -1));
+        getContentPane().add(jcbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 300, -1));
 
         jTableAlum.setBackground(new java.awt.Color(208, 204, 204));
         jTableAlum.setModel(new javax.swing.table.DefaultTableModel(
@@ -97,7 +97,7 @@ public class FormConsultaMateria extends javax.swing.JInternalFrame {
         jTableAlum.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableAlum);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 620, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, 390, 340));
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
