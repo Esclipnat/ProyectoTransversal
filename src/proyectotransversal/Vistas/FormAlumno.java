@@ -79,8 +79,26 @@ public class FormAlumno extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de Nacimiento:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
+
+        jTextDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextDocumentoKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 330, 30));
+
+        jTextNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNombreKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 360, -1));
+
+        jTextApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextApellidoKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, 360, -1));
 
         buttonGroup1.add(jRadioButtonActivo);
@@ -232,6 +250,30 @@ public class FormAlumno extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Error: campos vacios ");
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jTextDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextDocumentoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+                    evt.consume(); // Consume el evento si el carácter no es un número
+                }
+    }//GEN-LAST:event_jTextDocumentoKeyTyped
+
+    private void jTextApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextApellidoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume(); // Consume el evento si el carácter no es un número
+        }
+    }//GEN-LAST:event_jTextApellidoKeyTyped
+
+    private void jTextNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+                    evt.consume(); // Consume el evento si el carácter no es un número
+                }
+    }//GEN-LAST:event_jTextNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
